@@ -1,3 +1,9 @@
+#CaesarCypher.py
+#Name: Erick Andres
+#Date: 02/22/2026
+#Assignment: Lab 5
+#Purpose: To practice working with strings, loops and logic by creating a program that encrypts and decrypts messages using a Caesar Cipher.
+
 #Caesar Cipher
 #The Caesar cipher moves each letter forward in the alphabet by
 #the key.  The resulting message has all the letters advanced by 'key'
@@ -20,6 +26,19 @@ def encode(message, key):
 
 #def decode(message, key):
     #We will want to decode the message here.
+def decode(message, key):
+    alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    message = message.upper() 
+    plaintext = ""
+
+    for letter in message:
+        if alpha.find(letter) >= 0:
+            spot = (alpha.find(letter) -key) % 26
+            plaintext = plaintext + alpha[spot]
+        else:
+            plaintext = plaintext + letter
+    return plaintext 
+
 
 def main():
     message = input("Enter a message: ")
@@ -27,7 +46,11 @@ def main():
 
     secret = encode(message, key)
     print ("Encrypted:", secret)
+
     #plaintext = decode(secret, key)
+
+    plaintext = decode(secret, key)
+    print("Decrypted:", plaintext)
     #print ("Decrypted:", plaintext)
 
 
